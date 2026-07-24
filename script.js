@@ -36,6 +36,11 @@ const maxLenByCategory = Object.fromEntries(
 );
 
 function getDisplayLength() {
+  // Fixed box counts by category (do not reveal actual answer length)
+  if (gameState.currentCategory === 'tadc') return 7;
+  if (gameState.currentCategory === 'unstablesmp') return 9;
+
+  // Fallback for any other category
   return maxLenByCategory[gameState.currentCategory];
 }
 
@@ -105,7 +110,7 @@ function createKeyboard() {
   const keyboardRows = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-    ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
+    ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'SPACE', '⌫']
   ];
   
   keyboard.innerHTML = '';
@@ -120,7 +125,7 @@ function createKeyboard() {
       keyBtn.textContent = key;
       keyBtn.addEventListener('click', () => handleKeyPress(key));
       
-      if (key === 'ENTER' || key === '⌫') {
+      if (key === 'ENTER' || key === '⌫' || key === 'SPACE') {
         keyBtn.classList.add('special-key');
       }
       
@@ -140,6 +145,10 @@ function handleKeyPress(key) {
     submitGuess();
   } else if (key === '⌫') {
     deleteLetter();
+  } else if (key === 'SPACE') {
+    if (gameState.currentGuess.length < displayLength) {
+      addLetter(' ');
+    }
   } else if (gameState.currentGuess.length < displayLength) {
     addLetter(key);
   }
@@ -166,7 +175,7 @@ function updateCurrentRow() {
     const tile = document.getElementById(`tile-${currentRow}-${col}`);
     const letter = gameState.currentGuess[col] || '';
     
-    tile.textContent = letter;
+    tile.textContent = letter === ' ' ? '␣' : letter;
     tile.className = 'letter-tile';
     
     if (letter) {
@@ -177,33 +186,39 @@ function updateCurrentRow() {
 
 function submitGuess() {
   const displayLength = getDisplayLength();
+
+  // Require full fixed-length input for the category
   if (gameState.currentGuess.length !== displayLength) {
-    showMessage(`Word must be ${displayLength} letters long!`, 'error');
+    showMessage(
+      `Enter exactly ${displayLength} letters/spaces. The real answer may be shorter.`,
+      'error'
+    );
     return;
   }
-  
+
   const guess = gameState.currentGuess;
   const result = evaluateGuess(guess);
-  
+
   gameState.attempts.push({ guess, result });
   updateRowColors(gameState.attempts.length - 1, result);
   updateKeyboardColors(guess, result);
-  
-  if (guess === gameState.currentWord) {
+
+  // Win check: trim spaces so short real answers can still win
+  if (guess.trim() === gameState.currentWord) {
     gameState.won = true;
     gameState.gameOver = true;
     showMessage('🎉 Congratulations! You guessed the word!', 'success');
     endGame();
     return;
   }
-  
+
   if (gameState.attempts.length >= gameState.maxAttempts) {
     gameState.gameOver = true;
     showMessage(`Game Over! The word was: ${gameState.currentWord}`, 'error');
     endGame();
     return;
   }
-  
+
   gameState.currentGuess = '';
   attemptsDisplay.textContent = gameState.attempts.length;
 }
@@ -325,6 +340,9 @@ document.addEventListener('keydown', (e) => {
     handleKeyPress('ENTER');
   } else if (e.key === 'Backspace') {
     handleKeyPress('⌫');
+  } else if (e.key === ' ') {
+    e.preventDefault();
+    handleKeyPress('SPACE');
   } else if (/^[a-zA-Z]$/.test(e.key)) {
     handleKeyPress(e.key.toUpperCase());
   }
