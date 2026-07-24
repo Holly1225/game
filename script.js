@@ -13,18 +13,17 @@ const categories = {
     name: "The Amazing Digital Circus",
     words: [
       "pomni", "jax", "ragatha", "gangle", "zooble", "kinger", "caine", "bubble",
-      "abstract", "circus", "digital", "amazing", "adventure", "candy", "kingdom"
+      "abstract", "circus", "digital"
     ],
     color: "#ff6b9d"
   },
-  murderdrones: {
-    name: "Murder Drones",
-    words: [
-      "uzi", "n", "v", "j", "cyn", "doll", "lizzy", "thad", "khan", "worker",
-      "drone", "murder", "solver", "disassembly", "copper", "planet", "bunker"
-    ],
-    color: "#7c3aed"
-  }
+ unstablesmp: {
+  name: "Unstable SMP",
+  words: [
+    "wifies", "parrot", "spoke", "jumperwho", "flamefrag", "wemmbu""
+  ],
+  color: "#7c3aed"
+}
 };
 
 // NEW: longest word length per category
