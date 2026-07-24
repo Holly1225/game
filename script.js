@@ -13,21 +13,20 @@ const categories = {
     name: "The Amazing Digital Circus",
     words: [
       "pomni", "jax", "ragatha", "gangle", "zooble", "kinger", "caine", "bubble",
-      "abstract", "circus", "digital", "amazing", "adventure", "candy", "kingdom"
+      "abstract", "circus", "digital", "amazing"
     ],
     color: "#ff6b9d"
   },
-  murderdrones: {
-    name: "Murder Drones",
+  unstablesmp: {
+    name: "Unstable SMP",
     words: [
-      "uzi", "n", "v", "j", "cyn", "doll", "lizzy", "thad", "khan", "worker",
-      "drone", "murder", "solver", "disassembly", "copper", "planet", "bunker"
+      "wifies", "parrot", "wemmbu", "jumperwho", "flamefrag", "spoke"
     ],
     color: "#7c3aed"
   }
 };
 
-// NEW: longest word length per category
+// longest word length per category
 const maxLenByCategory = Object.fromEntries(
   Object.entries(categories).map(([key, category]) => [
     key,
@@ -286,10 +285,10 @@ function giveClue() {
       "Think about circus performers and AI",
       "Popular on YouTube animation"
     ],
-    murderdrones: [
-      "This character/show involves robots",
-      "Think about drones and sci-fi horror",
-      "Created by GLITCH Productions"
+    unstablesmp: [
+      "This character/server is from Unstable SMP",
+      "Think about SMP chaos and creators",
+      "Minecraft server-themed clue"
     ]
   };
   
@@ -329,3 +328,5 @@ document.addEventListener('keydown', (e) => {
     handleKeyPress(e.key.toUpperCase());
   }
 });
+
+
