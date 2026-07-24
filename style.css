@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #111318;
+  --panel: #1d222c;
+  --text: #f2f5f8;
+  --muted: #99a5b3;
+  --border: #3b4454;
+  --green: #538d4e;
+  --yellow: #b59f3b;
+  --gray: #3a3a3c;
+  --btn: #2a3240;
+  --btn-hover: #364155;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.app {
+  width: min(900px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+h1, h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 18px 0;
+}
+
+.modeBtn,
+.smallBtn {
+  border: 1px solid var(--border);
+  background: var(--btn);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.modeBtn:hover,
+.smallBtn:hover {
+  background: var(--btn-hover);
+}
+
+.hint {
+  color: var(--muted);
+  text-align: center;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rules {
+  margin-top: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.board {
+  margin: 16px auto;
+  display: grid;
+  gap: 8px;
+  width: fit-content;
+}
+
+.row {
+  display: grid;
+  gap: 8px;
+}
+
+.cell {
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  background: #141922;
+}
+
+.cell.green {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.cell.yellow {
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.cell.gray {
+  background: var(--gray);
+  border-color: var(--gray);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#guessInput {
+  width: min(480px, 100%);
+  border: 1px solid var(--border);
+  background: #10151d;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.message {
+  min-height: 24px;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1.05rem;
+}

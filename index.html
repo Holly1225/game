@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wordle Creator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="startScreen" class="screen active">
+      <h1>Wordle</h1>
+      <div class="buttonRow">
+        <button id="createOwnBtn" class="modeBtn">Create Own Wordle</button>
+        <button id="tadcBtn" class="modeBtn">TADC</button>
+        <button id="unstableBtn" class="modeBtn">Unstable SMP</button>
+      </div>
+      <p class="hint">Press a category to begin.</p>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div class="topBar">
+        <button id="backBtn" class="smallBtn">← Back</button>
+        <h2 id="modeTitle">Wordle</h2>
+      </div>
+
+      <p id="rulesText" class="rules"></p>
+      <div id="board" class="board" aria-label="wordle board"></div>
+
+      <div class="controls">
+        <input id="guessInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+          placeholder="Type guess (space allowed)" />
+        <button id="guessBtn" class="smallBtn">Enter</button>
+      </div>
+
+      <p class="hint">Use keyboard. Press space for empty letter spots. Press Enter to submit.</p>
+      <p id="message" class="message"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
