@@ -10,7 +10,7 @@ const gameState = {
 
 const categories = {
   tadc: {
-    name: "The Amazing Digital Circus",
+    name: "TADC",
     words: [
       "pomni", "jax", "ragatha", "gangle", "zooble", "kinger", "caine", "bubble",
       "abstract", "circus", "digital"
