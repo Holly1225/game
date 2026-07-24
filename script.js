@@ -117,6 +117,28 @@ function renderGuess(rowIndex, guess, colors) {
   }
 }
 
+function renderLiveGuessPreview() {
+  if (gameOver || tries >= MAX_TRIES) return;
+  const cells = boardRows[tries];
+  if (!cells) return;
+
+  const raw = normalizeInput(guessInput.value).slice(0, answerLen);
+
+  for (let i = 0; i < answerLen; i++) {
+    const ch = raw[i] || "";
+    cells[i].textContent = ch === " " ? "␠" : ch.toUpperCase();
+  }
+}
+
+function clearLiveGuessPreview() {
+  if (gameOver || tries >= MAX_TRIES) return;
+  const cells = boardRows[tries];
+  if (!cells) return;
+  for (let i = 0; i < answerLen; i++) {
+    cells[i].textContent = "";
+  }
+}
+
 function submitGuess() {
   if (gameOver) return;
 
@@ -138,14 +160,17 @@ function submitGuess() {
   if (raw === answer) {
     gameOver = true;
     messageEl.textContent = "good job :D";
+    alert("good job :D");
     return;
   }
 
   if (tries === MAX_TRIES) {
     gameOver = true;
     messageEl.textContent = `The word was "${answer}". better luck next time ig :D`;
+    alert(`The word was "${answer}". better luck next time ig :D`);
   } else {
     messageEl.textContent = `${MAX_TRIES - tries} tries left.`;
+    clearLiveGuessPreview();
   }
 }
 
@@ -201,5 +226,7 @@ guessInput.addEventListener("keydown", (e) => {
     submitGuess();
   }
 });
+
+guessInput.addEventListener("input", renderLiveGuessPreview);
 
 showStart();
