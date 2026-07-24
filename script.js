@@ -1,7 +1,7 @@
 const MAX_TRIES = 5;
 
-const TADC_WORDS = ["gangle", "zooble", "pomni", "jax", "caine", "kinger", "ragatha"];
-const UNSTABLE_WORDS = ["parrot", "wifies", "wemmbu", "spoke", "flamefrags", "clownpierce", "ashwagg", "jumperwho"];
+const TADC_WORDS = ["gangle", "zooble", "pomni", "jax", "caine", "kinger", "ragatha", "bubble", "digital", "ribbit", "kaufmo", "wormo", "queenie"];
+const UNSTABLE_WORDS = ["parrot", "wifies", "wemmbu", "spoke", "flamefrags", "clownpierce", "ashwagg", "jumperwho", "lomedy", "mapicc", "eggchan", "princezam", "boosfer"];
 
 const startScreen = document.getElementById("startScreen");
 const gameScreen = document.getElementById("gameScreen");
